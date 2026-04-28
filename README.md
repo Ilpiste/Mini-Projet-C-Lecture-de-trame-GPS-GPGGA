@@ -18,7 +18,7 @@ llll.ll  = Latitude = ll° ll' (.ll\*60/100)''
 
 a        = N ou S
 
-yyyyy.yy = Longitude
+yyyyy.yy = Longitude= yy° yy' (.yy\*60/100)''
 
 a        = E ou W/O
 
@@ -38,7 +38,7 @@ M        = Mètres  (Unité de la séparation ellipsoïde)
 
 x.x      = nombre de secondes écoulées depuis la dernière mise à jour DGPS.
 
-xxxx     =  Identification de la station DGPS.
+xxxx     = Identification de la station DGPS.
 
 \*xx      = somme de contrôle (XOR de tout les caractères entre $ et \* en ASCII)
 
