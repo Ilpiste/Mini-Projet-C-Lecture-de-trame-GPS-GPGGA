@@ -1,3 +1,27 @@
+/******************************************************************************
+*  ASR => partie R2.04 du S2.03                                               *
+*******************************************************************************
+*                                                                             *
+*  N° du Sujet : 1                                                            *
+*                                                                             *
+*******************************************************************************
+*                                                                             *
+*  Intitulé du sujet : Analyse de trame GPS                                   *
+*                                                                             *
+*******************************************************************************
+*                                                                             *
+*  Groupe-Nom-prénom1 : DULUC Soren                                           *
+*                                                                             *
+*  Groupe-Nom-prénom2 : SAURY Guillaume                                       *
+*                                                                             *
+*  Sujet 3 -> Groupe-Nom-prénom3 :                                            *
+*                                                                             *
+*******************************************************************************
+*                                                                             *
+*  Nom du fichier : main.c                                                    *
+*                                                                             *
+******************************************************************************/
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
@@ -9,7 +33,18 @@ int main(void)
 	printf("Entrez un trame GPS GPGGA : ");
 	scanf("%s", trame);
 	
-	verifierTrame("$GPGGA,064036.289,4836.5375,N,00740.9373,E,1,04,3.2,200.2,M,,,,0000*0E");
-	TrameGPS trameStruct = extraireChamps("$GPGGA,064036.289,4836.5375,N,00740.9373,E,1,04,3.2,200.2,M,,,,0000*0E");
+	if (!verifierTrame(trame))
+	{
+		printf("La trame %s est invalide, veuillez entrer une trame GPS suivant la norme NMEA 0183\n",trame);
+		return -1;
+	}
+	
+	TrameGPS trameStruct = extraireChamps(trame);
+	
+	trameStruct = formaterHeure(trameStruct);
+	trameStruct = convertirLongEtLat(trameStruct);
+	
+	affichageHeure(trameStruct);
+	affichageLongEtLat(trameStruct);
 }
 
