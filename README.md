@@ -2,43 +2,66 @@
 
 
 
+##### Membres du groupe :
+
+* DULUC Soren
+* SAURY Guillaume
 
 
 
+##### Objectif :
+
+L'objectif de cette application est d'interpréter une trame GPS suivant la norme NMEA 0183, et d'afficher la date de réception de la trame ainsi que la latitude et la longitude que fournit celle-ci.
 
 
 
-$GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx\*xx
+##### Documentation :
+
+###### verifierTrame :
+
+* Description : Renvoie true si la chaine de caractères est une trame GPS suivant la norme NMEA 0183, et false sinon.
+* Entrée : chaine de caractères (char\[])
+* Sortie : booléen (bool)
 
 
 
-hhmmss.ss= heure de la position
+###### extraireChamps :
 
-llll.ll  = Latitude = ll° ll' (.ll\*60/100)''
+* Description : Extrait les différents champs de la trame GPS dans un struct TrameGPS.
+* Entrée : chaine de caractères (char\[])
+* Sortie : struct TrameGPS (TrameGPS)
 
-a        = N ou S
 
-yyyyy.yy = Longitude= yy° yy' (.yy\*60/100)''
 
-a        = E ou W/O
+###### convertirLongEtLat :
 
-x        = fix Qualification (0=invalide; 1=Fix GPS; 2= fix DGPS)
+* Description : Convertie la longitude et la latitude pour qu'elles soient lisibles et les range dans un struct TrameGPS qui est renvoyé.
+* Entrée : struct TrameGPS (TrameGPS)
+* Sortie : struct TrameGPS (TrameGPS)
 
-xx       = Nombre de satellites en poursuite
 
-x.x      = DOP (Dilution Horizontale)
 
-x.x      = Altitude, en Mètres, au dessus du MSL (niveau moyen des Océans).
+###### affichageLongEtLat :
 
-M        = Mètres  (Unité de hauteur de l'antenne)
+* Description : Affiche la longitude et la latitude de la TrameGPS donnée en paramètre.
+* Entrée : struct TrameGPS (TrameGPS)
+* Sortie : rien (void)
 
-x.x      = Correction de la hauteur de la géoïde en Mètres par rapport à l'ellipsoïde WGS84 (MSL).
 
-M        = Mètres  (Unité de la séparation ellipsoïde)
 
-x.x      = nombre de secondes écoulées depuis la dernière mise à jour DGPS.
+###### formaterHeure :
 
-xxxx     = Identification de la station DGPS.
+* Description : Formate l'heure pour qu'elle soit lisible et la range dans un struct TrameGPS qui est renvoyé.
+* Entrée : struct TrameGPS (TrameGPS)
+* Sortie : struct TrameGPS (TrameGPS)
 
-\*xx      = somme de contrôle (XOR de tout les caractères entre $ et \* en ASCII)
+
+
+###### affichageHeure :
+
+* Description : Affiche l'heure de la TrameGPS donnée en paramètre.
+* Entrée : struct TrameGPS (TrameGPS)
+* Sortie : rien (void)
+
+
 
