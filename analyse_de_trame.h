@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 bool verifierTrame(char trame[]);
 
 struct trameGPS
